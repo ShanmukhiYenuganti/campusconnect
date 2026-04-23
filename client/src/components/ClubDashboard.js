@@ -39,7 +39,7 @@ function ClubDashboard() {
 
   const fetchEvents = useCallback(async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/events/club/${club.clubName}`);
+      const res = await axios.get(`/api/events/club/${club.clubName}`);
       setEvents(res.data);
     } catch (error) {
       console.error("Error fetching events:", error);
@@ -96,10 +96,10 @@ function ClubDashboard() {
 
     try {
       if (editingEvent) {
-        await axios.put(`http://localhost:5000/api/events/${editingEvent._id}`, payload);
+        await axios.put(`/api/events/${editingEvent._id}`, payload);
         alert("Event updated successfully!");
       } else {
-        await axios.post("http://localhost:5000/api/events", payload);
+        await axios.post("/api/events", payload);
         alert("Event created successfully!");
       }
       setIsEventModalOpen(false);
@@ -113,7 +113,7 @@ function ClubDashboard() {
   const deleteEvent = async (id) => {
     if (!window.confirm("Are you sure you want to delete this event? This action cannot be undone.")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/events/${id}`);
+      await axios.delete(`/api/events/${id}`);
       fetchEvents();
     } catch (error) {
       console.error("Error deleting event:", error);

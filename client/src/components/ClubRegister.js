@@ -39,7 +39,7 @@ function ClubRegister() {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/clubs/register", formData);
+      await axios.post("/api/clubs/register", formData);
       setSuccess("Club registered successfully! Redirecting to login...");
       
       // Redirect after brief delay

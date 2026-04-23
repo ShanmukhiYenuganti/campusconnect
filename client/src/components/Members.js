@@ -19,7 +19,7 @@ function Members({ club }) {
     
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(`http://localhost:5000/api/clubs/${clubId}/members`, { headers: { Authorization: `Bearer ${token}` } });
+      const res = await axios.get(`/api/clubs/${clubId}/members`, { headers: { Authorization: `Bearer ${token}` } });
       setMembers(res.data);
     } catch (err) {
       console.error("Error fetching members:", err);
@@ -38,7 +38,7 @@ function Members({ club }) {
 
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/clubs/${clubId}/members/${userId}`, { headers: { Authorization: `Bearer ${token}` } });
+      await axios.delete(`/api/clubs/${clubId}/members/${userId}`, { headers: { Authorization: `Bearer ${token}` } });
       
       // Explicitly enforce hard data fetching ensuring parity
       await fetchMembers();

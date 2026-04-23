@@ -12,7 +12,7 @@ function Requests({ club }) {
     setLoading(true);
     try {
       const clubId = localStorage.getItem("clubId");
-      let url = `http://localhost:5000/api/clubs/requests`;
+      let url = `/api/clubs/requests`;
       if (clubId) {
         url += `?clubId=${clubId}`;
       } else {
@@ -37,7 +37,7 @@ function Requests({ club }) {
       const clubId = localStorage.getItem("clubId");
       const role = localStorage.getItem("userRole");
       const token = localStorage.getItem("token");
-      await axios.put(`http://localhost:5000/api/clubs/requests/${id}/approve`, { clubId, clubName, role }, { headers: { Authorization: `Bearer ${token}` } });
+      await axios.put(`/api/clubs/requests/${id}/approve`, { clubId, clubName, role }, { headers: { Authorization: `Bearer ${token}` } });
       fetchRequests();
     } catch (error) {
       console.error("Error approving request:", error);
@@ -50,7 +50,7 @@ function Requests({ club }) {
       const clubId = localStorage.getItem("clubId");
       const role = localStorage.getItem("userRole");
       const token = localStorage.getItem("token");
-      await axios.put(`http://localhost:5000/api/clubs/requests/${id}/reject`, { clubId, clubName, role }, { headers: { Authorization: `Bearer ${token}` } });
+      await axios.put(`/api/clubs/requests/${id}/reject`, { clubId, clubName, role }, { headers: { Authorization: `Bearer ${token}` } });
       fetchRequests();
     } catch (error) {
       console.error("Error rejecting request:", error);

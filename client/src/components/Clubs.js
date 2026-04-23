@@ -24,7 +24,7 @@ function Clubs() {
 
     const fetchMyRequests = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/clubs/myrequests?email=${encodeURIComponent(userEmail)}`);
+        const res = await axios.get(`/api/clubs/myrequests?email=${encodeURIComponent(userEmail)}`);
         const statuses = {};
         res.data.forEach(req => {
           statuses[req.clubId.toString()] = req.status;
@@ -38,7 +38,7 @@ function Clubs() {
     const fetchClubs = async () => {
       setLoading(true);
       try {
-        const res = await axios.get("http://localhost:5000/api/clubs");
+        const res = await axios.get("/api/clubs");
         setClubs(res.data);
       } catch (error) {
         console.error("Error fetching clubs:", error);
@@ -53,7 +53,7 @@ function Clubs() {
 
   const requestJoinClub = async (club) => {
     try {
-      await axios.post("http://localhost:5000/api/clubs/request", {
+      await axios.post("/api/clubs/request", {
         clubId: club._id,
         clubName: club.name, // The backend needs exact match
         studentEmail: userEmail,

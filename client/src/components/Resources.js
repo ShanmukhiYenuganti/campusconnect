@@ -20,7 +20,7 @@ function Resources({ club }) {
   const fetchResources = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`http://localhost:5000/api/resources?club=${clubName}`);
+      const res = await axios.get(`/api/resources?club=${clubName}`);
       setResources(res.data);
     } catch (error) {
       console.error("Error fetching resources:", error);
@@ -40,7 +40,7 @@ function Resources({ club }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/resources", { 
+      await axios.post("/api/resources", { 
         ...formData, 
         quantity: Number(formData.quantity),
         available: Number(formData.available) || Number(formData.quantity),
@@ -59,7 +59,7 @@ function Resources({ club }) {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this resource?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/resources/${id}`);
+      await axios.delete(`/api/resources/${id}`);
       fetchResources();
     } catch (error) {
       console.error("Error deleting resource:", error);

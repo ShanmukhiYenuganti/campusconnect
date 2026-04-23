@@ -24,7 +24,7 @@ function Events() {
   
   const fetchEvents = () => {
     setLoading(true);
-    axios.get("http://localhost:5000/api/events")
+    axios.get("/api/events")
       .then(res => {
         setEvents(res.data);
         setLoading(false);
@@ -36,7 +36,7 @@ function Events() {
   }
 
   const registerEvent = (id) => {
-    axios.post("http://localhost:5000/api/registrations", {
+    axios.post("/api/registrations", {
       eventId: id,
       studentEmail: userEmail
     })

@@ -21,7 +21,7 @@ function Dashboard() {
       return;
     }
 
-    axios.get("http://localhost:5000/api/events")
+    axios.get("/api/events")
       .then(res => {
         setEvents(res.data);
         setLoading(false);

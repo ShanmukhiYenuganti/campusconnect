@@ -24,7 +24,7 @@ function Tasks({ club }) {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(`http://localhost:5000/api/tasks?club=${clubName}`, { headers: { Authorization: `Bearer ${token}` } });
+      const res = await axios.get(`/api/tasks?club=${clubName}`, { headers: { Authorization: `Bearer ${token}` } });
       setTasks(res.data);
     } catch (error) {
       console.error("Error fetching tasks:", error);
@@ -38,7 +38,7 @@ function Tasks({ club }) {
     try {
       const clubId = localStorage.getItem("clubId");
       const token = localStorage.getItem("token");
-      const res = await axios.get(`http://localhost:5000/api/clubs/${clubId}/members`, { headers: { Authorization: `Bearer ${token}` } });
+      const res = await axios.get(`/api/clubs/${clubId}/members`, { headers: { Authorization: `Bearer ${token}` } });
       setClubMembers(res.data);
     } catch (error) {
       console.error("Error fetching members:", error);
@@ -67,7 +67,7 @@ function Tasks({ club }) {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      await axios.post("http://localhost:5000/api/tasks", { ...formData, club: clubName }, { headers: { Authorization: `Bearer ${token}` } });
+      await axios.post("/api/tasks", { ...formData, club: clubName }, { headers: { Authorization: `Bearer ${token}` } });
       alert("Task assigned successfully!");
       setIsModalOpen(false);
       setFormData({ title: "", description: "", assignedTo: "", assignedToEmail: "", status: "Pending", deadline: "" });
@@ -82,7 +82,7 @@ function Tasks({ club }) {
     if (!window.confirm("Are you sure you want to delete this task?")) return;
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/tasks/${id}`, { headers: { Authorization: `Bearer ${token}` } });
+      await axios.delete(`/api/tasks/${id}`, { headers: { Authorization: `Bearer ${token}` } });
       fetchTasks();
     } catch (error) {
       console.error("Error deleting task:", error);
@@ -92,7 +92,7 @@ function Tasks({ club }) {
   const updateStatus = async (id, newStatus, currentTask) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.put(`http://localhost:5000/api/tasks/${id}`, { ...currentTask, status: newStatus }, { headers: { Authorization: `Bearer ${token}` } });
+      await axios.put(`/api/tasks/${id}`, { ...currentTask, status: newStatus }, { headers: { Authorization: `Bearer ${token}` } });
       fetchTasks();
     } catch (error) {
       console.error("Error updating status:", error);

@@ -14,7 +14,7 @@ function MyRegistrations() {
   const fetchRegistrations = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`http://localhost:5000/api/registrations?email=${userEmail}`);
+      const res = await axios.get(`/api/registrations?email=${userEmail}`);
       setRegistrations(res.data);
     } catch (error) {
       console.error("Error fetching registrations:", error);
@@ -35,7 +35,7 @@ function MyRegistrations() {
     if (!window.confirm("Are you sure you want to cancel your registration?")) return;
     
     try {
-      await axios.delete(`http://localhost:5000/api/registrations?eventId=${eventId}&studentEmail=${userEmail}`);
+      await axios.delete(`/api/registrations?eventId=${eventId}&studentEmail=${userEmail}`);
       alert("Registration cancelled successfully");
       fetchRegistrations(); // Refresh to update UI
     } catch (error) {

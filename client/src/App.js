@@ -12,6 +12,10 @@ import ClubRegister from "./components/ClubRegister";
 import ProtectedRoute from "./components/ProtectedRoute";
 import axios from "axios";
 
+const API = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
+axios.defaults.baseURL = API;
+
 axios.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
